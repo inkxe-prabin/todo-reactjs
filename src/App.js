@@ -17,7 +17,7 @@ class App extends React.Component {
     this.setState({
       items: todoList
     }, () => {
-      console.log(this.state.items);
+      // console.log(this.state.items);
     });
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
           <span>toDo list</span>
         </div>
         <AddToDo onToDoAdded={this.onToDoAdded} />
-        <ToDoList />
+        <ToDoList toDoItems={this.state.items} />
       </div>
     )
   }

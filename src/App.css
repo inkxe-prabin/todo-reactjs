@@ -40,3 +40,21 @@
 .whiteFont {
   color: #ffffff;
 }
+
+.todoCard {
+  background: #e8f9f9;
+  height: 50px;
+  line-height: 50px;
+
+  border: 1px solid #e4e4e4;
+  color: #827f7f;
+}
+
+.counterFlag {
+  display: inline-table;
+  border-radius: 50%;
+  margin-left: 10px;
+  background: #3373b1;
+  color: #ffffff;
+  font-weight: bold;
+}

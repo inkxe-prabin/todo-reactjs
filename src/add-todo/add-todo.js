@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+// import Moment from 'react-moment';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class AddToDo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          term: '',
-          todoItem: {
-            task: '',
-            timing: '',
-            isCompleted: 0,
-          }
+            id: 0,
+            term: '',
+            todoItem: {
+                task: '',
+                timing: {},
+                isCompleted: 0,
+            }
         };
     }
 
@@ -28,38 +30,27 @@ class AddToDo extends Component {
         event.preventDefault();
         this.setState({
             term: this.state.term.trim()
+        }, () => {
+            if(this.state.term !== '') {
+                const todoList = this.state.todoItem;
+                let currentDate = new Date();
+                todoList.id = this.state.id + 1;
+                todoList.task = this.state.term;
+                todoList.timing = currentDate;
+                todoList.isCompleted = 0;
+        
+                this.setState({
+                    id: this.state.id + 1,
+                    term: '',
+                    todoItem: {
+                        task: '',
+                        timing: {},
+                        isCompleted: 0
+                    }
+                });
+                this.props.onToDoAdded(todoList);
+            }
         });
-        if(this.state.term !== '') {
-            const todoList = this.state.todoItem;
-            let currentDate = new Date();
-            todoList.task = this.state.term;
-            todoList.timing = this.getDateTimeFormat(currentDate);
-            todoList.isCompleted = 0;
-    
-            this.setState({
-              term: '',
-              todoItem: {
-                task: '',
-                timing: '',
-                isCompleted: 0
-              }
-            });
-            this.props.onToDoAdded(todoList);
-        }
-    }
-
-    /**
-     * Formatting current datetime.
-     * @param dateTime 
-     */
-    getDateTimeFormat(dateTime) {
-        var date = dateTime.getDate(); //Current Date
-        var month = dateTime.getMonth() + 1; //Current Month
-        var year = dateTime.getFullYear(); //Current Year
-        var hours = dateTime.getHours(); //Current Hours
-        var min = dateTime.getMinutes(); //Current Minutes
-        var sec = dateTime.getSeconds(); //Current Seconds
-        return date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec;
     }
 
     /**
@@ -70,7 +61,7 @@ class AddToDo extends Component {
             term: '',
             todoItem: {
               task: '',
-              timing: '',
+              timing: {},
               isCompleted: 0
             }
         });
