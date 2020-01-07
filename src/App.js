@@ -23,10 +23,26 @@ class App extends React.Component {
 
   onToDoCompleted = (taskId) => {
     const todoList = this.state.items.slice();
-    todoList.map(item => {
+    todoList.map((item) => {
       if(item.id === taskId)
         item.isCompleted = 1;
+      return 1;
     });
+
+    this.setState({
+      items: todoList
+    });
+  }
+
+  onToDoDeleted= (taskId) => {
+    const todoList = this.state.items.slice();
+    todoList.map((item,index) => {
+      if(item.id === taskId) {
+        todoList.splice(index,1);
+      }
+      return 1;
+    });
+
     this.setState({
       items: todoList
     });
@@ -39,7 +55,9 @@ class App extends React.Component {
           <span>toDo list</span>
         </div>
         <AddToDo onToDoAdded={this.onToDoAdded} />
-        <ToDoList toDoItems={this.state.items} onToDoCompleted={this.onToDoCompleted} />
+        <ToDoList toDoItems = {this.state.items}
+                  onToDoCompleted = {this.onToDoCompleted}
+                  onToDoDeleted = {this.onToDoDeleted}  />
       </div>
     )
   }
