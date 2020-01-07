@@ -22,14 +22,16 @@ class ToDoList extends Component {
 
                 {this.props.toDoItems.map((item,index) => 
                     <div className="col-md-12 p-0 displayInlineFlex todoCard small" key={index}>
-                        <div className="col-md-8">
+                        <div className="col-md-7">
                             <p>{item.task}</p>
                         </div>
                         <div className="col-md-2">
                             <p><Moment format="DD MMM YYYY h:mm a">{item.timing}</Moment></p>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-3 text-right">
                             <input type="button" className="btn btn-sm btn-success" value="Complete" />
+                            <input type="button" className="ml-1 btn btn-sm btn-info" value="Edit" />
+                            <input type="button" className="ml-1 btn btn-sm btn-danger" value="Delete" />
                         </div>
                     </div>
                 

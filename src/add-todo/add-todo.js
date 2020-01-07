@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Moment from 'react-moment';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class AddToDo extends Component {
