@@ -21,6 +21,17 @@ class App extends React.Component {
     });
   }
 
+  onToDoCompleted = (taskId) => {
+    const todoList = this.state.items.slice();
+    todoList.map(item => {
+      if(item.id === taskId)
+        item.isCompleted = 1;
+    });
+    this.setState({
+      items: todoList
+    });
+  }
+
   render() {
         return (
       <div className="container">
@@ -28,7 +39,7 @@ class App extends React.Component {
           <span>toDo list</span>
         </div>
         <AddToDo onToDoAdded={this.onToDoAdded} />
-        <ToDoList toDoItems={this.state.items} />
+        <ToDoList toDoItems={this.state.items} onToDoCompleted={this.onToDoCompleted} />
       </div>
     )
   }
