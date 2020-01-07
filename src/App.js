@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import AddToDo from './add-todo';
+// import { render } from '@testing-library/react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// function App() {
+
+
+//   render() {
+//     return (
+//       <div className="container">
+//         <div className="titleCard height-5 text-center pt-1">
+//           <span>toDo list</span>
+//         </div>
+//         <AddToDo onToDoAdded={this.onToDoAdded} />
+//       </div>
+//     )
+//   }
+// }
+
+class App extends React.Component {
+  onToDoAdded = (items) => {
+    console.log(items);
+    
+  }
+
+  render() {
+        return (
+      <div className="container">
+        <div className="titleCard height-5 text-center pt-1">
+          <span>toDo list</span>
+        </div>
+        <AddToDo onToDoAdded={this.onToDoAdded} />
+      </div>
+    )
+  }
 }
 
 export default App;
