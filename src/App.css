@@ -3,8 +3,12 @@
   height: 50px;
   font-size: xx-large;
   margin-top: 15px;
-  color: #316493;
+  color: #3373b1;
   font-weight: bold;
+}
+
+.displayInlineFlex {
+  display: inline-flex;
 }
 
 .addDiv {
@@ -26,5 +30,13 @@
 }
 
 .defaultBgColor {
-  background: #3373B1;
+  background: #3373b1;
+}
+
+.defaultFontColor {
+  color: #3373b1;
+}
+
+.whiteFont {
+  color: #ffffff;
 }

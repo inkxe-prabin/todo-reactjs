@@ -6,30 +6,52 @@ class AddToDo extends Component {
         super(props);
         this.state = {
           term: '',
-          items: []
+          todoItem: {
+            task: '',
+            timing: '',
+            isCompleted: 0,
+          }
         };
     }
 
+    /**
+     * On changing the ToDo title.
+     */
     onChange = (event) => {
         this.setState({ term: event.target.value });
     }
 
+    /**
+     * Adding new ToDo.
+     */
     onSubmit = (event) => {
         event.preventDefault();
-        const todoList = this.state.items.slice();
-        let currentDate = new Date();
-
-        todoList.push({
-            "task": this.state.term,
-            "timing": this.getDateTimeFormat(currentDate)
-        })
         this.setState({
-          term: '',
-          items: todoList
+            term: this.state.term.trim()
         });
-        this.props.onToDoAdded(todoList);
+        if(this.state.term !== '') {
+            const todoList = this.state.todoItem;
+            let currentDate = new Date();
+            todoList.task = this.state.term;
+            todoList.timing = this.getDateTimeFormat(currentDate);
+            todoList.isCompleted = 0;
+    
+            this.setState({
+              term: '',
+              todoItem: {
+                task: '',
+                timing: '',
+                isCompleted: 0
+              }
+            });
+            this.props.onToDoAdded(todoList);
+        }
     }
 
+    /**
+     * Formatting current datetime.
+     * @param dateTime 
+     */
     getDateTimeFormat(dateTime) {
         var date = dateTime.getDate(); //Current Date
         var month = dateTime.getMonth() + 1; //Current Month
@@ -40,19 +62,29 @@ class AddToDo extends Component {
         return date + '/' + month + '/' + year + ' ' + hours + ':' + min + ':' + sec;
     }
 
-    handleClick() {
-        console.log(this.state.items);
+    /**
+     * Reset the ToDo title text input value.
+     */
+    clearToDoTitle() {
+        this.setState({
+            term: '',
+            todoItem: {
+              task: '',
+              timing: '',
+              isCompleted: 0
+            }
+        });
     }
       
     render() {
         return (
             <form onSubmit={this.onSubmit}>
                 <div className="col-md-12 addDiv p-0">
-                        <input type="text" className="col-md-10 addTxtInput" onChange={this.onChange} placeholder="Add New task..." value={this.state.term} />
-                        <div className="col-md-2 addActionDiv text-center pt-2">
-                            <input type="submit" className="font-weight-bold btn btn-sm btn-primary defaultBgColor" value="+" style={{width: "30%"}} />
-                            <input type="button" className="ml-1 font-weight-bold btn btn-sm btn-primary defaultBgColor" value="Clear"  style={{width: "60%"}} onClick={() => this.handleClick()} />
-                        </div>
+                    <input type="text" className="col-md-10 addTxtInput" onChange={this.onChange} placeholder="Add New task..." value={this.state.term} />
+                    <div className="col-md-2 addActionDiv text-center pt-2">
+                        <input type="submit" className="font-weight-bold btn btn-sm btn-primary defaultBgColor" value="+" style={{width: "30%"}} />
+                        <input type="button" className="ml-1 font-weight-bold btn btn-sm btn-primary defaultBgColor" value="Clear"  style={{width: "60%"}} onClick={() => this.clearToDoTitle()} />
+                    </div>
                 </div>
             </form>
         );
