@@ -11,6 +11,9 @@ class App extends React.Component {
     };
   }
 
+  /**
+   * Add new Todo.
+   */
   onToDoAdded = (item) => {
     const todoList = this.state.items.slice();
     todoList.push(item);
@@ -21,6 +24,9 @@ class App extends React.Component {
     });
   }
 
+  /**
+   * Complete a Todo.
+   */
   onToDoCompleted = (taskId) => {
     const todoList = this.state.items.slice();
     todoList.map((item) => {
@@ -34,6 +40,9 @@ class App extends React.Component {
     });
   }
 
+  /**
+   * Delete a Todo.
+   */
   onToDoDeleted= (taskId) => {
     const todoList = this.state.items.slice();
     todoList.map((item,index) => {
